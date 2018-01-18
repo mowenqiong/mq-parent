@@ -1,7 +1,6 @@
 package com.mo.activemq.queue;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
-
 import javax.jms.*;
 
 public class QueueReceiver {
@@ -20,8 +19,9 @@ public class QueueReceiver {
         int i=0;
         while (i<3){
             i++;
-            TextMessage message = (TextMessage) consumer.receive();
-            session.commit();
+            TextMessage message = (TextMessage) consumer.receive(1000L);
+            if (message==null) break;
+            session.commit();//commit后，自动签收，下次就不会再收到这条消息了
             System.out.println("收到消息:"+message.getText());
         }
 

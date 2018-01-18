@@ -21,6 +21,7 @@
 
     <dependencyManagement>
         <dependencies>
+            <!--activemq依赖包-->
             <dependency>
                 <groupId>org.apache.activemq</groupId>
                 <artifactId>activemq-all</artifactId>
@@ -31,7 +32,7 @@
                 <artifactId>xbean-spring</artifactId>
                 <version>3.16</version>
             </dependency>
-
+            <!--log4j日志-->
             <dependency>
                 <groupId>log4j</groupId>
                 <artifactId>log4j</artifactId>
