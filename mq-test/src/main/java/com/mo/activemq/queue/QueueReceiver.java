@@ -6,7 +6,10 @@ import javax.jms.*;
 public class QueueReceiver {
     public static void main(String[] args) throws Exception{
 
-        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://122.112.217.219:61616");
+        //String brokerURL = "tcp://122.112.217.219:61616";
+        String brokerURL = "tcp://localhost:61616";
+
+        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(brokerURL);
 
         Connection connection = connectionFactory.createConnection();
         connection.start();

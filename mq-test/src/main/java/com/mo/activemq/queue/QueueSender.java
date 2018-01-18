@@ -7,9 +7,10 @@ import javax.jms.*;
 public class QueueSender {
 
     public static void main(String[] args) throws Exception {
-
+        //String brokerURL = "tcp://122.112.217.219:61616";
+        String brokerURL = "tcp://localhost:61616";
         //1 连接activemq服务器
-        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://122.112.217.219:61616");
+        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(brokerURL);
 
         //2 创建连接，并启动
         Connection connection = connectionFactory.createConnection();
