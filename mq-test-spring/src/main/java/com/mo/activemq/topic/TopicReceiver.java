@@ -1,4 +1,4 @@
-package com.mo.activemq.queue;
+package com.mo.activemq.topic;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,23 +10,22 @@ import org.springframework.stereotype.Component;
 import javax.jms.Destination;
 
 @Component
-public class QueueReceiver {
-
+public class TopicReceiver {
     @Autowired
     private JmsTemplate jmsTemplate;
 
     @Autowired
-    @Qualifier("destinationQueue")
-    private Destination queue;
+    @Qualifier("destinationTopic")
+    private Destination topic;
 
     public void receiveMsg(){
-        String msg = (String) jmsTemplate.receiveAndConvert(queue);
-        System.out.println("收到消息："+msg);
+        String msg = (String) jmsTemplate.receiveAndConvert(topic);
+        System.out.println(msg);
     }
 
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-amq.xml");
-        QueueReceiver receiver = (QueueReceiver) context.getBean("queueReceiver");
+        TopicReceiver receiver = (TopicReceiver) context.getBean("topicReceiver");
         receiver.receiveMsg();
     }
 }
