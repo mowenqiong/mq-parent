@@ -19,10 +19,14 @@ public class QueueReceiver {
     @Qualifier("destinationQueue")
     private Destination destination;
 
+    public void receiveMsg(){
+        String msg = (String) jmsTemplate.receiveAndConvert(destination);
+        System.out.println("收到消息："+msg);
+    }
+
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-amq.xml");
         QueueReceiver receiver = (QueueReceiver) context.getBean("queueReceiver");
-        String msg = (String) receiver.jmsTemplate.receiveAndConvert(receiver.destination);
-        System.out.println(msg);
+        receiver.receiveMsg();
     }
 }

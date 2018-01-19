@@ -23,15 +23,19 @@ public class QueueSender {
     @Qualifier("destinationQueue")
     private Destination destination;
 
-    public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("spring-amq.xml");
-        QueueSender queueSender = (QueueSender) context.getBean("queueSender");
-        queueSender.jmsTemplate.send(queueSender.destination, new MessageCreator() {
+    public void sendMsg(){
+        jmsTemplate.send(destination,new MessageCreator() {
             @Override
             public Message createMessage(Session session) throws JMSException {
                 return session.createTextMessage("hello");
             }
         });
+    }
+
+    public static void main(String[] args) {
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring-amq.xml");
+        QueueSender queueSender = (QueueSender) context.getBean("queueSender");
+        queueSender.sendMsg();
     }
 
 }
