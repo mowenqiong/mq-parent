@@ -1,6 +1,8 @@
 # mq-parent
-activemq的例子
- 
+activemq的例子  
+**mq-test**:使用jms api的例子  
+**mq-test-spring**:使用spring集成activemq  
+
 ## activemq依赖
 ```xml
 <dependency>
