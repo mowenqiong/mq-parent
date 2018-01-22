@@ -6,8 +6,8 @@ import javax.jms.*;
 public class QueueReceiver {
     public static void main(String[] args) throws Exception{
 
-        //String brokerURL = "tcp://122.112.217.219:61616";
-        String brokerURL = "tcp://localhost:61616";
+        String brokerURL = "tcp://122.112.217.219:61616";
+        //String brokerURL = "tcp://localhost:61617";
 
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(brokerURL);
 
@@ -20,7 +20,7 @@ public class QueueReceiver {
         MessageConsumer consumer = session.createConsumer(destination);
 
         int i=0;
-        while (i<3){
+        while (i<5){
             i++;
             TextMessage message = (TextMessage) consumer.receive(1000L);
             if (message==null) break;
