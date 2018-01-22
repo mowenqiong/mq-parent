@@ -1,6 +1,6 @@
 activemq的例子  
-**mq-test**:使用原生activemq的例子  
-**mq-test-spring**:使用spring集成activemq的例子  
+**mq-test**：使用原生activemq的例子    
+**mq-test-spring**：使用spring集成activemq的例子     
 
 ## activemq依赖
 ```xml
