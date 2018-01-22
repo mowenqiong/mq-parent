@@ -7,7 +7,7 @@ public class QueueReceiver {
 
     public static void main(String[] args) {
         QueueReceiver receiver = new QueueReceiver();
-        receiver.receive("tcp://122.112.217.219:61616","que2",5);
+        receiver.receive("tcp://122.112.217.219:61616","que1",2);
     }
 
     /**

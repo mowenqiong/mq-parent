@@ -16,7 +16,10 @@ public class QueueSender {
         //queueSender.send("failover:(tcp://122.112.217.219:61616,tcp://122.112.217.219:61617)?randomize=true", "my-queue",10);
 
         //同时发往多个队列，逗号分隔
-        queueSender.send("tcp://122.112.217.219:61616","que1,que2",10);
+        //queueSender.send("tcp://122.112.217.219:61616","que1,que2",10);
+
+        //发到组合队列MY.QUEUE中
+        queueSender.send("tcp://122.112.217.219:61616","MY.QUEUE",2);
     }
 
     /**
