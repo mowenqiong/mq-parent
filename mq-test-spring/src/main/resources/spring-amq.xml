@@ -16,7 +16,6 @@
             <bean class="org.apache.activemq.ActiveMQConnectionFactory">
                 <!--消息中间件地址,支持tcp,nio等等协议，见安装目录的conf/activemq.xml中的transportConnectors-->
                 <property name="brokerURL" value="tcp://122.112.217.219:61616"/>
-                <!--<property name="brokerURL" value="nio://122.112.217.219:61617"/>-->
             </bean>
         </property>
         <property name="maxConnections" value="100"/>
@@ -25,12 +24,13 @@
     <!--消息模板，程序中使用它来发和收消息-->
     <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
         <property name="connectionFactory" ref="jmsFactory"/>
+        <!--<property name="defaultDestination" ref="destinationQueue"/> 默认的目的地-->
         <property name="messageConverter">
             <bean class="org.springframework.jms.support.converter.SimpleMessageConverter"/>
         </property>
     </bean>
 
-    <!--消息队列-->
+    <!--队列-->
     <bean id="destinationQueue" class="org.apache.activemq.command.ActiveMQQueue">
         <!--<constructor-arg index="0" value="spring-queue"/>-->
         <constructor-arg name="name" value="spring-queue"/>
@@ -42,13 +42,14 @@
     </bean>
 
 
-    <!--监听消息，就不需要启动接收的客户端了-->
+    <!--一个用于异步消息监听的管理类-->
     <bean id="jmsContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
         <property name="connectionFactory" ref="jmsFactory"/>
         <property name="destination" ref="destinationTopic"/>
         <property name="messageListener" ref="topicMessageListener"/>
     </bean>
 
+    <!--消息监听器，就不需要启动接收的客户端了-->
     <bean id="topicMessageListener" class="com.mo.activemq.topic.TopicMessageListener"/>
 
 

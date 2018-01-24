@@ -7,7 +7,8 @@ public class QueueReceiver {
 
     public static void main(String[] args) {
         QueueReceiver receiver = new QueueReceiver();
-        receiver.receive("tcp://122.112.217.219:61616","que1",2);
+        receiver.receive("tcp://122.112.217.219:61616","Consumer.A.VirtualTopic.TEST",2);
+        receiver.receive("tcp://122.112.217.219:61616","Consumer.B.VirtualTopic.TEST",2);
     }
 
     /**
@@ -32,10 +33,10 @@ public class QueueReceiver {
                 int i=0;
                 while (i<cout){
                     i++;
-                    TextMessage message = (TextMessage) consumer.receive(1000L);
+                    TextMessage message = (TextMessage) consumer.receive();
                     if (message==null) break;
                     session.commit();//commit后，自动签收，下次就不会再收到这条消息了
-                    System.out.println("收到消息:"+message.getText());
+                    System.out.println("【队列消息】:"+message.getText());
                 }
 
                 session.close();

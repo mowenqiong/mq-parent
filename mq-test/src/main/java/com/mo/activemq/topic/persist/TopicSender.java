@@ -11,7 +11,7 @@ public class TopicSender {
         Connection connection = connectionFactory.createConnection();
         Session session = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
 
-        Topic topic = session.createTopic("persist-topic");
+        Topic topic = session.createTopic("VirtualTopic.TEST");
         MessageProducer producer = session.createProducer(topic);
 
         //要持久化订阅，消息发送者要用DeliveryMode.PERSISTENT模式
