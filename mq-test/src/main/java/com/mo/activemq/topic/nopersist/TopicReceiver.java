@@ -12,7 +12,7 @@ public class TopicReceiver {
 
     public static void main(String[] args) throws JMSException{
         TopicReceiver topicReceiver = new TopicReceiver();
-        topicReceiver.receive("tcp://122.112.217.219:61616","a");
+        topicReceiver.receive("tcp://122.112.217.219:61616","Mirror.Topic.que1");
     }
 
     public void receive(String brokerURL,String topicName) throws JMSException{

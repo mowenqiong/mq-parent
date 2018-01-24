@@ -14,20 +14,27 @@ import javax.jms.*;
 public class TopicReceiver {
 
     public static void main(String[] args) throws JMSException {
-        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://122.112.217.219:61616");
-        Connection connection = connectionFactory.createConnection();
-        connection.setClientID("clientID-1");
-        Session session = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
-        Topic topic = session.createTopic("persist-topic");
+        TopicReceiver receiver = new TopicReceiver();
+//      receiver.receive("tcp://122.112.217.219:61616","persist-topic",
+//                "clientID-1","subscriber-1");
+        receiver.receive("tcp://122.112.217.219:61616","Mirror.Topic.que1","clientID-1","subscriber-1");
+    }
 
-        TopicSubscriber subscriber = session.createDurableSubscriber(topic, "subscriber-1");
+    public void receive(String brokerURL,String topicName,String clientID,String subscribeName) throws JMSException {
+        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(brokerURL);
+        Connection connection = connectionFactory.createConnection();
+        connection.setClientID(clientID);
+        Session session = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
+        Topic topic = session.createTopic(topicName);
+
+        TopicSubscriber subscriber = session.createDurableSubscriber(topic, subscribeName);
 
         connection.start();
 
         Message message = subscriber.receive();
         while (message!=null){
             TextMessage textMessage = (TextMessage) message;
-            System.out.println("收到消息："+textMessage.getText());
+            System.out.println("【主题消息】："+textMessage.getText());
             message = subscriber.receive(1000l);
         }
         session.commit();

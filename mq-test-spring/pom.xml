@@ -12,7 +12,7 @@
 
     <name>mq-test-spring</name>
     <url>http://maven.apache.org</url>
-    <description>activemq结合spring开发例子</description>
+    <description>使用spring集成activemq的例子</description>
 
     <dependencies>
 

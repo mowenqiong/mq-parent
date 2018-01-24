@@ -19,7 +19,9 @@ public class QueueSender {
         //queueSender.send("tcp://122.112.217.219:61616","que1,que2",10);
 
         //发到组合队列MY.QUEUE中
-        queueSender.send("tcp://122.112.217.219:61616","MY.QUEUE",2);
+        //queueSender.send("tcp://122.112.217.219:61616","MY.QUEUE",2);
+
+        queueSender.send("tcp://122.112.217.219:61616","que1",1);
     }
 
     /**

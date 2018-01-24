@@ -5,14 +5,15 @@
     <groupId>com.mo.activemq</groupId>
     <artifactId>mq-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>mq-test</module>
-        <module>mq-test-spring</module>
-    </modules>
     <packaging>pom</packaging>
 
     <name>mq-parent</name>
     <url>http://maven.apache.org</url>
+
+    <modules>
+        <module>mq-test</module>
+        <module>mq-test-spring</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
